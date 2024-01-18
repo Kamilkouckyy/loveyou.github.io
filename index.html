@@ -7,6 +7,13 @@
 </head>
 <body>
     <h1>Memories for you</h1>
+    <form id="imgForm">
+        <input type="file" accept="images/*" id="imgInput" onchange="displayImage()" >
+        <br>
+        <input type="submit" onclick="confirmUpload()" >
+    </form>
+    <br>
+    <img id="nahranaFotka" alt="">
     <div class="Card">
         <img src="images/1.jpeg" >
         <img src="images/2.jpeg" >
@@ -37,4 +44,21 @@
         <img src="images/27.jpeg" >
         
     </div>
+    <script>
+        function displayImage(){
+            const input = document.getElementById('imgInput');
+            const img = document.createElement('nahranaFotka');
+
+            if(input.files && input.files[0]){
+                const reader = new FileReader();
+                reader.onload = function(e){
+                    img.src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        function confirmUpload(){
+            alert("Fotka nahraná");
+        }
+    </script>
 </html>
